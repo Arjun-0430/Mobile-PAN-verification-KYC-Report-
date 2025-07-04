@@ -46,11 +46,7 @@
 
         /* Enhanced Report Page Background */
         #report-screen-bg {
-            background-color: #f8f9fa;
-            background-image:
-                linear-gradient(rgba(102, 126, 234, 0.05) 1px, transparent 1px),
-                linear-gradient(to right, rgba(102, 126, 234, 0.05) 1px, transparent 1px);
-            background-size: 20px 20px;
+            background-color: #dee2e6;
         }
 
         /* Button with Shadow */
@@ -183,12 +179,18 @@
                             <p id="report-date" class="text-gray-500"></p>
                         </div>
                         <div class="flex items-center gap-4">
-                            <button id="back-to-home-btn" class="py-2 px-4 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-full hover:bg-gray-100">New Verification</button>
-                            <button id="download-pdf-btn" class="button-shadow inline-flex items-center py-2 px-5 border border-transparent text-sm font-medium text-white bg-green-600 hover:bg-green-700">
-                                <svg class="h-5 w-5 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
-                                Download
-                            </button>
-                        </div>
+                            <div class="relative">
+                                <input type="text" id="report-search" placeholder="Search in report..." class="pl-10 pr-4 py-2 border rounded-full w-48 sm:w-64 focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" /></svg>
+                                </div>
+                            </div>
+                           <button id="back-to-home-btn" class="py-2 px-4 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-full hover:bg-gray-100">New Verification</button>
+                           <button id="download-pdf-btn" class="button-shadow inline-flex items-center py-2 px-5 border border-transparent text-sm font-medium text-white bg-green-600 hover:bg-green-700">
+                               <svg class="h-5 w-5 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
+                               Download
+                           </button>
+                       </div>
                     </div>
                     
                     <div id="report-content" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -217,13 +219,6 @@
 
 
     <script>
-        // --- Mock API Database ---
-        const mockApiDatabase = [
-          { "data": { "client_id": "mobile_to_prefill_v3_ScLOIHCrrmxZAqBQNStN", "mobile_number": "7827234123", "prefill_details": { "client_id": "prefill_report_v2_IJlNQIhKhyCnkzgYkNRH", "name": "SATEESH SINGH", "mobile": "7827234123", "personal_info": { "full_name": "SATEESH SINGH", "dob": "1994-11-02", "gender": "Male", "total_income": "30000", "occupation": null, "age": "30" }, "phone_info": [ { "reported_date": "2025-05-15", "type_code": "H", "number": "6219698802" }, { "reported_date": "2025-01-31", "type_code": "H", "number": "7491102312" } ], "address_info": [{ "address": "MURHARIA KAIMUR BHABU", "state": "BR", "type": "Owns,Permanent", "postal": "921102", "reported_date": "2025-05-15" }], "email_info": [{ "reported_date": "2025-01-31", "email_address": "SATEESH123@GMAIL.COM" }], "identity_info": { "pan_number": [{ "id_number": "FYWPS1234M" }], "passport_number": [], "driving_license": [], "voter_id": [], "aadhaar_number": [{ "id_number": "XXXXXXXXXXXX" }], "ration_card": [], "other_id": [{ "id_number": "30065940967604" }] } }, "pan_details": { "pan_status": "success", "pan_details": { "pan_number": "FYWPS1234M", "full_name": "SATEESH SINGH", "full_name_split": ["SATEESH", "SINGH"], "masked_aadhaar": "XXXXXXXX2902", "address": { "line_1": "", "line_2": "", "street_name": "", "zip": "", "city": "", "state": "", "country": "", "full": "" }, "email": null, "phone_number": null, "gender": "M", "dob": "1994-11-02", "input_dob": null, "aadhaar_linked": true, "dob_verified": false, "dob_check": false, "category": "person", "status": "valid", "less_info": false } }, "status": "success" }, "status_code": 200, "success": true, "message": "Success", "message_code": "success" },
-          { "data": { "client_id": "mobile_to_prefill_v3_ArjunSample", "mobile_number": "9884092693", "prefill_details": { "client_id": "prefill_report_v2_ArjunSample", "name": "ARJUN SINGH", "mobile": "9884092693", "personal_info": { "full_name": "ARJUN SINGH", "dob": "1988-07-20", "gender": "Male", "total_income": "60000", "occupation": "Engineer", "age": "36" }, "phone_info": [ { "reported_date": "2025-03-10", "type_code": "H", "number": "9884092693" }, { "reported_date": "2024-11-01", "type_code": "O", "number": "7771234567" } ], "address_info": [ { "address": "45, GANDHI NAGAR, CHENNAI", "state": "TN", "type": "Owns,Permanent", "postal": "600020", "reported_date": "2025-03-10" } ], "email_info": [ { "reported_date": "2025-01-15", "email_address": "ARJUN.S@EXAMPLE.COM" } ], "identity_info": { "pan_number": [{ "id_number": "ABCDE1234F" }], "passport_number": [], "driving_license": [], "voter_id": [], "aadhaar_number": [{ "id_number": "XXXXXXXXXXXX" }], "ration_card": [], "other_id": [] } }, "pan_details": { "pan_status": "success", "pan_details": { "pan_number": "ABCDE1234F", "full_name": "ARJUN SINGH", "full_name_split": [ "ARJUN", "SINGH" ], "masked_aadhaar": "XXXXXXXX1234", "address": { "line_1": "", "line_2": "", "street_name": "", "zip": "", "city": "", "state": "", "country": "", "full": "" }, "email": null, "phone_number": null, "gender": "M", "dob": "1988-07-20", "input_dob": null, "aadhaar_linked": true, "dob_verified": false, "dob_check": false, "category": "person", "status": "valid", "less_info": false } }, "status": "success" }, "status_code": 200, "success": true, "message": "Success", "message_code": "success" },
-          { "data": { "client_id": "mobile_to_prefill_v3_Sample03", "mobile_number": "9012345678", "prefill_details": { "client_id": "prefill_report_v2_Sample03", "name": "PRIYA SHARMA", "mobile": "9012345678", "personal_info": { "full_name": "PRIYA SHARMA", "dob": "1990-03-15", "gender": "Female", "total_income": "45000", "occupation": "Teacher", "age": "35" }, "phone_info": [ { "reported_date": "2025-02-01", "type_code": "H", "number": "9012345678" } ], "address_info": [ { "address": "12, PARK AVENUE, DELHI", "state": "DL", "type": "Owns,Permanent", "postal": "110001", "reported_date": "2025-02-01" } ], "email_info": [ { "reported_date": "2024-12-01", "email_address": "PRIYA.SHARMA@EMAIL.COM" } ], "identity_info": { "pan_number": [ { "id_number": "FGHIJ5678K" } ], "passport_number": [], "driving_license": [], "voter_id": [], "aadhaar_number": [ { "id_number": "XXXXXXXXXXXX" } ], "ration_card": [], "other_id": [] } }, "pan_details": { "pan_status": "success", "pan_details": { "pan_number": "FGHIJ5678K", "full_name": "PRIYA SHARMA", "full_name_split": [ "PRIYA", "SHARMA" ], "masked_aadhaar": "XXXXXXXX5678", "address": { "line_1": "", "line_2": "", "street_name": "", "zip": "", "city": "", "state": "", "country": "", "full": "" }, "email": null, "phone_number": null, "gender": "F", "dob": "1990-03-15", "input_dob": null, "aadhaar_linked": true, "dob_verified": false, "dob_check": false, "category": "person", "status": "valid", "less_info": false } }, "status": "success" }, "status_code": 200, "success": true, "message": "Success", "message_code": "success" },
-        ];
-        
         // --- DOM Elements ---
         const homeScreen = document.getElementById('home-screen');
         const reportScreen = document.getElementById('report-screen');
@@ -245,7 +240,7 @@
         });
 
         // --- Form Submission ---
-        form.addEventListener('submit', (e) => {
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
             const name = document.getElementById('name').value;
             const mobile = document.getElementById('mobile_no').value;
@@ -257,30 +252,32 @@
 
             loaderOverlay.classList.remove('hidden');
 
-            setTimeout(() => {
-                const result = findUser(name, mobile);
+            try {
+                const response = await fetch('/api/verify', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ name, mobile }),
+                });
+
+                const result = await response.json();
                 loaderOverlay.classList.add('hidden');
 
-                if (result) {
+                if (response.ok && result.success !== false) { // Check for our custom success flag
                     formSection.classList.add('hidden');
                     homeScreen.classList.add('hidden');
                     reportScreen.classList.remove('hidden');
                     renderReport(result.data);
                 } else {
-                    showToast('User not found. Please check the details.');
+                    showToast(result.message || 'User not found. Please check the details.');
                 }
-            }, 1500);
+            } catch (error) {
+                loaderOverlay.classList.add('hidden');
+                showToast('An error occurred. Please try again later.');
+                console.error('API Error:', error);
+            }
         });
-
-        // --- API Simulation ---
-        function findUser(name, mobile) {
-            const normalizedName = name.trim().toUpperCase();
-            const normalizedMobile = mobile.trim();
-            return mockApiDatabase.find(entry =>
-                entry.data.prefill_details.name.toUpperCase() === normalizedName &&
-                entry.data.mobile_number === normalizedMobile
-            );
-        }
         
         // --- Toast Notification ---
         function showToast(message) {
@@ -421,57 +418,99 @@
             });
         }
         
+        // --- Search/Filter Logic ---
+        document.getElementById('report-search').addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            const dataCards = document.querySelectorAll('#detailed-info .bg-slate-50');
+            
+            dataCards.forEach(card => {
+                const cardText = card.textContent.toLowerCase();
+                const parentSection = card.closest('.space-y-4, .grid');
+                
+                if (cardText.includes(searchTerm)) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+                
+                // Check if any card in the section is visible
+                const anyVisible = Array.from(parentSection.children).some(child => !child.classList.contains('hidden'));
+                const sectionTitle = parentSection.previousElementSibling;
+
+                if (sectionTitle && sectionTitle.tagName === 'H3') {
+                     if (anyVisible) {
+                        sectionTitle.classList.remove('hidden');
+                    } else {
+                        sectionTitle.classList.add('hidden');
+                    }
+                }
+            });
+        });
+
         // --- PDF Generation Logic (Unchanged) ---
         function renderPdfContent(data) {
             const pdfContainer = document.getElementById('pdf-export-content');
             const prefill = data.prefill_details;
             const pan = data.pan_details.pan_details;
+            const logoUrl = `data:image/svg+xml;base64,${btoa('<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 0C9.06 0 0 9.06 0 20C0 30.94 9.06 40 20 40C30.94 40 40 30.94 40 20C40 9.06 30.94 0 20 0ZM29.48 13.32L18.84 23.96L12.52 17.64L10 20.16L18.84 29L32 15.84L29.48 13.32Z" fill="#4F46E5"/></svg>')}`;
 
-            const createRow = (label, value) => {
-                if (!value && value !== false) return '';
-                return `<div style="padding: 8px 0; border-bottom: 1px solid #e5e7eb; display: flex; justify-content: space-between;">
-                            <span style="font-weight: 500; color: #4b5563;">${label}</span>
-                            <span style="color: #111827; text-align: right;">${value}</span>
+            const createRow = (label, value, isSubtle = false) => {
+                if (!value && value !== false && value !== 0) return '';
+                const valueColor = isSubtle ? '#6b7280' : '#111827';
+                const valueWeight = isSubtle ? 'normal' : '600';
+                return `<div style="padding: 10px 0; border-bottom: 1px solid #e5e7eb; display: flex; justify-content: space-between; align-items: center;">
+                            <span style="font-weight: 500; color: #4b5563; font-size: 14px;">${label}</span>
+                            <span style="color: ${valueColor}; text-align: right; font-size: 14px; font-weight: ${valueWeight};">${value}</span>
                         </div>`;
             };
-            const createSectionTitle = (title) => `<h2 style="color: #1e3a8a; margin-top: 24px; margin-bottom: 8px; font-size: 1.125rem; border-bottom: 2px solid #60a5fa; padding-bottom: 4px;">${title}</h2>`;
+            const createSectionTitle = (title) => `<h2 style="color: #1e3a8a; margin-top: 28px; margin-bottom: 12px; font-size: 18px; font-weight: 700; border-bottom: 2px solid #60a5fa; padding-bottom: 6px;">${title}</h2>`;
 
-            let pdfHtml = `<div style="padding: 40px; font-family: 'Inter', sans-serif; color: #1f2937; width: 700px; background: white;">
-                            <h1 style="text-align: center; color: #1f2937; font-size: 1.75rem; font-weight: 700;">Verification Report</h1>
-                            <p style="text-align: center; font-size: 0.875rem; color: #6b7280; margin-bottom: 24px;">Generated on: ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>`;
+            let pdfHtml = `<div style="padding: 50px; font-family: 'Inter', sans-serif; color: #1f2937; width: 800px; background: white; border: 1px solid #e5e7eb;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #d1d5db; padding-bottom: 20px; margin-bottom: 20px;">
+                                <img src="${logoUrl}" alt="Logo" style="height: 50px; width: 50px;"/>
+                                <div>
+                                    <h1 style="color: #1f2937; font-size: 28px; font-weight: 800; text-align: right;">Verification Report</h1>
+                                    <p style="font-size: 14px; color: #6b7280; text-align: right; margin-top: 4px;">Generated on: ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                                </div>
+                            </div>`;
 
-            pdfHtml += createSectionTitle("Personal Information");
+            pdfHtml += createSectionTitle("Profile Summary");
             pdfHtml += createRow('Full Name', prefill.personal_info.full_name);
+            pdfHtml += createRow('PAN Number', pan.pan_number);
+            pdfHtml += createRow('PAN Status', `<span style="color: #16a34a; font-weight: 700;">${pan.status}</span>`);
+            pdfHtml += createRow('Aadhaar Linked', pan.aadhaar_linked ? '<span style="color: #16a34a;">Yes</span>' : '<span style="color: #dc2626;">No</span>');
+
+            pdfHtml += createSectionTitle("Personal Details");
             pdfHtml += createRow('Date of Birth', prefill.personal_info.dob);
             pdfHtml += createRow('Age', prefill.personal_info.age);
             pdfHtml += createRow('Gender', prefill.personal_info.gender);
             pdfHtml += createRow('Occupation', prefill.personal_info.occupation || 'N/A');
             pdfHtml += createRow('Total Income', prefill.personal_info.total_income ? `₹${prefill.personal_info.total_income}` : 'N/A');
             
-            pdfHtml += createSectionTitle("PAN Details");
-            pdfHtml += createRow('PAN Number', pan.pan_number);
+            pdfHtml += createSectionTitle("Identity & PAN Details");
             pdfHtml += createRow('Name on PAN', pan.full_name);
-            pdfHtml += createRow('PAN Status', pan.status);
-            pdfHtml += createRow('Aadhaar Linked', pan.aadhaar_linked ? 'Yes' : 'No');
-            
-            pdfHtml += createSectionTitle("Identity Information");
+            pdfHtml += createRow('Category', pan.category);
             pdfHtml += createRow('Masked Aadhaar (from PAN)', pan.masked_aadhaar);
             pdfHtml += createRow('Aadhaar Number (from Prefill)', prefill.identity_info.aadhaar_number[0]?.id_number || 'N/A');
             pdfHtml += createRow('Other ID', prefill.identity_info.other_id[0]?.id_number || 'N/A');
             
             pdfHtml += createSectionTitle("Contact Information");
             prefill.phone_info.forEach(phone => {
-                pdfHtml += createRow('Phone Number', `${phone.number} <span style="font-size:11px; color:#6b7280;">(Type: ${phone.type_code === 'H' ? 'Home' : 'Office'}, Reported: ${phone.reported_date})</span>`);
+                pdfHtml += createRow('Phone Number', `${phone.number} <span style="font-size:12px; color:#6b7280;">(Type: ${phone.type_code === 'H' ? 'Home' : 'Office'}, Reported: ${phone.reported_date})</span>`);
             });
             prefill.email_info.forEach(email => {
-                pdfHtml += createRow('Email Address', `${email.email_address} <span style="font-size:11px; color:#6b7280;">(Reported: ${email.reported_date})</span>`);
+                pdfHtml += createRow('Email Address', `${email.email_address} <span style="font-size:12px; color:#6b7280;">(Reported: ${email.reported_date})</span>`);
             });
             
             pdfHtml += createSectionTitle("Address Information");
             prefill.address_info.forEach(addr => {
-                pdfHtml += createRow('Address', `${addr.address}, ${addr.state} - ${addr.postal} <span style="font-size:11px; color:#6b7280; display:block; margin-top:4px;">(Type: ${addr.type}, Reported: ${addr.reported_date})</span>`);
+                pdfHtml += createRow('Address', `${addr.address}, ${addr.state} - ${addr.postal} <span style="font-size:12px; color:#6b7280; display:block; margin-top:4px;">(Type: ${addr.type}, Reported: ${addr.reported_date})</span>`);
             });
 
+            pdfHtml += `<div style="margin-top: 40px; text-align: center; font-size: 12px; color: #9ca3af;">
+                            <p>This is a system-generated report and is for verification purposes only.</p>
+                            <p>&copy; ${new Date().getFullYear()} Verification Suite. All Rights Reserved.</p>
+                        </div>`;
             pdfHtml += `</div>`;
             pdfContainer.innerHTML = pdfHtml;
         }
